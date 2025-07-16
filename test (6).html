@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CosmicSaaS - Galactic Solutions for Everyone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --space-primary: #0b0411;
+            --space-secondary: #190c2e;
+            --space-accent: #5d54ff;
+            --space-highlight: #bc00e0;
+            --space-text: #f0f0ff;
+            --star-color: rgba(255, 255, 255, 0.7);
+            --gradient-start: rgba(11, 4, 17, 0);
+            --gradient-end: rgba(11, 4, 17, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--space-primary), var(--space-secondary));
+            color: var(--space-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Space Background */
+        #space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            background-image: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end)), 
+                              url('https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1792&q=80');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* Galaxy Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(125deg, var(--space-accent), var(--space-highlight));
+            border-radius: 50%;
+            animation: float var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(189, 0, 224, 0.7);
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #ff00f7, #bc00e0, #5d54ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-shift 5s infinite alternate;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            max-width: 800px;
+            margin-bottom: 40px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            width: 90%;
+            max-width: 1000px;
+            height: 300px;
+            margin: 20px auto 40px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid rgba(93, 84, 255, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 0 60px rgba(92, 85, 255, 0.15);
+            animation: breathing 4s infinite ease-in-out;
+        }
+
+        .dashboard-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(25, 12, 46, 0.7), rgba(42, 18, 87, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            backdrop-filter: blur(3px);
+            animation: dashboard-pulse 8s infinite ease-in-out;
+        }
+
+        .graph-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(to right, #5d54ff, #bc00e0);
+            border-radius: 50%;
+            animation: graph-pulse 1.5s infinite ease-in-out;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+
+        .line {
+            position: absolute;
+            width: 100%;
+            background: linear-gradient(to right, transparent, var(--space-accent), transparent);
+            height: 2px;
+            bottom: 30%;
+            animation: line-glow 3s infinite alternate;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--space-accent), var(--space-highlight));
+            color: white;
+            box-shadow: 0 5px 20px rgba(92, 85, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(92, 85, 255, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--space-text);
+            border: 2px solid var(--space-accent);
+            margin-left: 20px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(93, 84, 255, 0.1);
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--space-accent), var(--space-highlight));
+            margin: 15px auto 0;
+            border-radius: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(25, 12, 46, 0.6);
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(93, 84, 255, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(188, 0, 224, 0.5);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--space-accent), var(--space-highlight));
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--space-accent), var(--space-highlight));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: icon-pulse 3s infinite;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 20px;
+            background: rgba(9, 2, 18, 0.7);
+            border-top: 1px solid rgba(93, 84, 255, 0.3);
+            border-bottom: 1px solid rgba(93, 84, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--space-accent), transparent);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--space-accent), var(--space-highlight));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .stat-item .label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(25, 12, 46, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(93, 84, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease;
+            backdrop-filter: blur(3px);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--space-highlight);
+        }
+
+        .quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .client {
+            display: flex;
+            align-items: center;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background: linear-gradient(135deg, var(--space-accent), var(--space-highlight));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .client-info {
+            font-weight: 500;
+        }
+
+        .client-info span {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(45deg, rgba(29, 12, 64, 0.9), rgba(11, 4, 17, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+        }
+
+        .floating-rocks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .rock {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(93,84,255,0.3), transparent);
+            width: 200px;
+            height: 200px;
+            filter: blur(30px);
+            opacity: 0.5;
+            animation: rock-float 20s infinite alternate;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--space-primary);
+            border-top: 1px solid rgba(93, 84, 255, 0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .social-links {
+            margin: 25px 0;
+        }
+
+        .social-link {
+            display: inline-block;
+            color: var(--space-text);
+            margin: 0 10px;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: var(--space-accent);
+        }
+
+        /* Animations */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes breathing {
+            0%, 100% { transform: scale(0.98); }
+            50% { transform: scale(1); }
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes dashboard-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes graph-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes line-glow {
+            0% { box-shadow: 0 0 5px rgba(93, 84, 255, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(188, 0, 224, 0.8); }
+        }
+
+        @keyframes counter-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes rock-float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 100px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero .btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Space Background -->
+    <div id="space-background"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles" id="particles"></div>
+        <h1>Welcome to <span>CosmicSaaS</span></h1>
+        <p>Launch your business into the stratosphere with our galaxy-class SaaS platform. Streamline your workflow, unlock insights, and achieve stellar growth.</p>
+        
+        <div class="dashboard-preview">
+            <div class="dashboard-content">
+                CosmicSaaS Dashboard Preview
+                <!-- Graph Visualization Dots -->
+                <div class="graph-dot" style="--delay:1; top:50%; left:20%;"></div>
+                <div class="graph-dot" style="--delay:2; top:45%; left:30%;"></div>
+                <div class="graph-dot" style="--delay:3; top:30%; left:40%;"></div>
+                <div class="graph-dot" style="--delay:4; top:55%; left:50%;"></div>
+                <div class="graph-dot" style="--delay:5; top:70%; left:60%;"></div>
+                <div class="graph-dot" style="--delay:6; top:35%; left:70%;"></div>
+                <div class="graph-dot" style="--delay:7; top:50%; left:80%;"></div>
+                <!-- Moving Line -->
+                <div class="line" style="animation-delay: 1s;"></div>
+                <div class="line" style="bottom: 50%; animation-delay: 2.5s;"></div>
+            </div>
+        </div>
+        
+        <div class="btns">
+            <a href="#" class="btn btn-primary">Start Free Trial</a>
+            <a href="#" class="btn btn-secondary">View Demo</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title">Stellar Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <h3 class="feature-title">AI-Powered Insights</h3>
+                <p>Harness cosmic data with powerful AI to uncover insights that drive meaningful business decisions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p>Experience warp-speed performance with our optimized architecture and CDN-powered delivery.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="feature-title">Galaxy-Scale Security</h3>
+                <p>Military-grade encryption protects your data like a force field around your information assets.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-code-branch"></i>
+                </div>
+                <h3 class="feature-title">Seamless Integrations</h3>
+                <p>Connect with all your tools in our cosmic ecosystem for unified workflows and data flow.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-meteor"></i>
+                </div>
+                <h3 class="feature-title">Quantum Scalability</h3>
+                <p>Grow without limits as our platform effortlessly handles your expanding business universe.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="feature-title">Orbit Support</h3>
+                <p>Our elite support team is always in orbit, ready to assist you 24/7/365.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="number" id="counter1">3850</div>
+                <div class="label">Active Customers</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" id="counter2">185</div>
+                <div class="label">Countries Served</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" id="counter3">99.9</div>
+                <div class="label">Uptime %</div>
+            </div>
+            <div class="stat-item">
+                <div class="number" id="counter4">94</div>
+                <div class="label">Team Members</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">Interstellar Testimonials</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <div class="quote">
+                    "CosmicSaaS has completely transformed how we analyze customer data. It's like we found the Hubble Telescope for our business intelligence."
+                </div>
+                <div class="client">
+                    <div class="client-avatar">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <div class="client-info">
+                        Alex Johnson <span>CTO, StellarTech</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="quote">
+                    "The quantum leap in productivity we've experienced after switching to CosmicSaaS is out of this world. Truly revolutionary!"
+                </div>
+                <div class="client">
+                    <div class="client-avatar">
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <div class="client-info">
+                        Sarah Williams <span>CEO, Nebula Inc.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="quote">
+                    "I've used many SaaS platforms, but CosmicSaaS truly stands out with its intuitive interface and powerful features. It's rocket fuel for our business!"
+                </div>
+                <div class="client">
+                    <div class="client-avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="client-info">
+                        Mark Chen <span>Operations Director, OrbitX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="floating-rocks">
+            <div class="rock" style="top: 20%; left: 10%;"></div>
+            <div class="rock" style="top: 60%; right: 15%; animation-delay: -5s;"></div>
+            <div class="rock" style="bottom: 15%; left: 25%; animation-delay: -10s;"></div>
+        </div>
+        
+        <h2>Ready to Launch?</h2>
+        <p>Join thousands of intergalactic businesses accelerating growth with CosmicSaaS. Start your journey today!</p>
+        <a href="#" class="btn btn-primary">Begin Your Free Trial</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">CosmicSaaS</div>
+        <p>Copyright © 2023 CosmicSaaS. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Create stars in background
+        const spaceBg = document.getElementById('space-background');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Random sizes from 1 to 3px
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Random positions
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            
+            // Random animation settings
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            star.style.setProperty('--delay', `${Math.random() * 5}s`);
+            
+            spaceBg.appendChild(star);
+        }
+        
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random sizes from 3 to 8px
+            const size = Math.random() * 5 + 3;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random positions
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.left = `${Math.random() * 100}%`;
+            
+            // Random animation settings
+            particle.style.setProperty('--duration', `${Math.random() * 6 + 4}s`);
+            particle.style.setProperty('--delay', `${Math.random() * 5}s`);
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Counter animation
+        const counters = document.querySelectorAll('.number');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+        
+        const animateCounters = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.textContent;
+                    let count = 0;
+                    
+                    const updateCounter = () => {
+                        const increment = target / 200;
+                        count += increment;
+                        
+                        if (count < target) {
+                            counter.textContent = Math.ceil(count);
+                            setTimeout(updateCounter, 5);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    
+                    updateCounter();
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(animateCounters, observerOptions);
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+    </script>
+</body>
+</html>
