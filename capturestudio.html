@@ -719,8 +719,15 @@
       }
 
       @media (max-width: 992px) {
+        header {
+          padding: 15px 5%;
+        }
         .nav-links {
           display: none;
+        }
+        .nav-btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
         }
         .footer-content {
           grid-template-columns: 1fr 1fr;
@@ -746,6 +753,15 @@
       }
 
       @media (max-width: 576px) {
+        header {
+          padding: 12px 5%;
+        }
+        .logo {
+          font-size: 22px;
+        }
+        .logo i {
+          font-size: 26px;
+        }
         .hero h1 {
           font-size: 2.5rem;
         }
@@ -1103,21 +1119,28 @@
           </a>
         </div>
 
-        <form class="contact-form">
+        <form class="contact-form" id="contactForm">
           <input
             type="text"
+            name="name"
             class="form-input"
             placeholder="Your Name"
             required
           />
           <input
             type="email"
+            name="email"
             class="form-input"
             placeholder="Your Email"
             required
           />
-          <input type="text" class="form-input" placeholder="Subject" />
-          <textarea class="form-input" placeholder="Your Message"></textarea>
+          <input type="text" name="subject" class="form-input" placeholder="Subject" />
+          <textarea
+            name="message"
+            class="form-input"
+            placeholder="Your Message"
+            required
+          ></textarea>
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
@@ -1308,12 +1331,12 @@
 
         // Close mobile menu if clicking outside
         document.addEventListener("click", function (e) {
-          if (e.target.closest(".nav-btn")) {
-            document.querySelector(".nav-btn").textContent = "Get Quote Sent!";
-            setTimeout(() => {
-              document.querySelector(".nav-btn").textContent = "Get Quote";
-            }, 2000);
-          }
+            if (e.target.closest(".nav-btn")) {
+              document.querySelector(".nav-btn").textContent = "Sent!";
+              setTimeout(() => {
+                document.querySelector(".nav-btn").textContent = "Get Quote";
+              }, 2000);
+            }
         });
 
         // Smooth scroll for navbar links
@@ -1373,6 +1396,46 @@
               resetInterval();
             });
           }
+        }
+
+        // --- Form Submission Logic ---
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Stop default browser submission
+
+            const submitButton = this.querySelector(".submit-btn");
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = "Sending...";
+            submitButton.disabled = true;
+
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            // Send data to the Vercel serverless function at /api/contact
+            fetch("/api/contact", {
+              method: "POST",
+              body: data,
+            })
+              .then((response) => response.json())
+              .then((result) => {
+                if (result.status === "success") {
+                  alert("Thank you! Your message has been sent successfully.");
+                  this.reset();
+                } else {
+                  // Show the error message from the server
+                  alert("Error: " + result.message);
+                }
+              })
+              .catch((error) => {
+                console.error("Submission error:", error);
+                alert("Sorry, a network error occurred. Please try again later.");
+              })
+              .finally(() => {
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+              });
+          });
         }
       });
     </script>
