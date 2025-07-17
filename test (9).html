@@ -228,6 +228,34 @@
             max-width: 800px;
             margin: 0 auto;
             position: relative;
+            padding: 0 50px; /* Add padding for buttons */
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: #e6c200;
+        }
+
+        .prev-btn {
+            left: 0;
+        }
+
+        .next-btn {
+            right: 0;
         }
 
         .testimonial-item {
@@ -415,6 +443,8 @@
                 <p>"The team delivered our project on time and exceeded expectations."</p>
                 <h4>Mike Johnson, Developer</h4>
             </div>
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
         </div>
     </section>
 
@@ -480,15 +510,44 @@
         // Testimonial Carousel
         let currentTestimonial = 0;
         const testimonials = document.querySelectorAll(".testimonial-item");
+        const prevBtn = document.querySelector(".prev-btn");
+        const nextBtn = document.querySelector(".next-btn");
+        let testimonialInterval;
+
         function showTestimonial(index) {
             testimonials.forEach((item, i) => {
                 item.classList.toggle("active", i === index);
             });
         }
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }, 5000);
+
+        function startAutoPlay() {
+            testimonialInterval = setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(testimonialInterval);
+            startAutoPlay();
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener("click", () => {
+                currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                showTestimonial(currentTestimonial);
+                resetAutoPlay();
+            });
+
+            nextBtn.addEventListener("click", () => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+                resetAutoPlay();
+            });
+        }
+
+        showTestimonial(currentTestimonial);
+        startAutoPlay();
     </script>
 </body>
 </html>
