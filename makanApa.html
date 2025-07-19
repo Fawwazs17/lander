@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Digital - Transform Your Business</title>
+    <title>makanApa - Your Food Delivery Partner</title>
     <style>
         * {
             margin: 0;
@@ -104,8 +104,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 15% 25%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 85% 75%, rgba(118, 75, 162, 0.35) 0%, transparent 60%);
+            filter: blur(50px);
         }
 
         .hero-content {
@@ -858,10 +859,10 @@
         section {
             scroll-margin-top: 80px;
         }
-            opacity: 0;
+            /* opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease;
-        }
+        } */
 
         .scroll-animate.active {
             opacity: 1;
@@ -874,7 +875,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
-                <a href="#" class="logo">Nexus Digital</a>
+                <a href="#" class="logo">makanApa</a>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#features">Features</a></li>
@@ -891,8 +892,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Transform Your Business with <span class="highlight">Next-Gen Solutions</span></h1>
-                    <p>Unlock unprecedented growth and innovation with our cutting-edge digital transformation platform. Experience the future of business today.</p>
+                    <h1>Craving Something Delicious? <span class="highlight">Order Now!</span></h1>
+                    <p>Get your favorite meals delivered right to your doorstep from the best restaurants in town. Fast, fresh, and convenient food delivery.</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn-primary">Start Your Journey</a>
                         <a href="#features" class="btn-secondary">Learn More</a>
@@ -900,19 +901,19 @@
                 </div>
                 <div class="hero-visual">
                     <div class="hero-card">
-                        <h3>Powerful Analytics</h3>
-                        <p>Real-time insights that drive intelligent decision-making across your entire organization.</p>
+                        <h3>Fast & Reliable Delivery</h3>
+                        <p>Track your order in real-time and get your food delivered hot and fresh, every time.</p>
                         <div class="stats">
                             <div class="stat">
-                                <h4>300%</h4>
-                                <p>ROI Increase</p>
+                                <h4 id="roi-increase">30 Min</h4>
+                                <p>Avg. Delivery</p>
                             </div>
                             <div class="stat">
-                                <h4>99.9%</h4>
-                                <p>Uptime</p>
+                                <h4 id="uptime">500+</h4>
+                                <p>Restaurants</p>
                             </div>
                             <div class="stat">
-                                <h4>24/7</h4>
+                                <h4 id="support">24/7</h4>
                                 <p>Support</p>
                             </div>
                         </div>
@@ -932,33 +933,33 @@
             <div class="features-grid">
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">⚡</div>
-                    <h3>Lightning Fast Performance</h3>
-                    <p>Experience blazing-fast speeds with our optimized infrastructure, delivering results in milliseconds and keeping your team productive.</p>
+                    <h3>Lightning Fast Delivery</h3>
+                    <p>Get your food delivered in record time with our optimized delivery network, ensuring your meal arrives hot and fresh.</p>
                 </div>
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">🛡️</div>
-                    <h3>Enterprise Security</h3>
-                    <p>Bank-grade security with end-to-end encryption, multi-factor authentication, and compliance with industry standards.</p>
+                    <h3>Secure & Easy Payments</h3>
+                    <p>Enjoy peace of mind with secure payment options and a seamless checkout experience for all your orders.</p>
                 </div>
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">📊</div>
-                    <h3>Advanced Analytics</h3>
-                    <p>Unlock actionable insights with AI-powered analytics, predictive modeling, and comprehensive reporting dashboards.</p>
+                    <h3>Real-time Order Tracking</h3>
+                    <p>Watch your delivery progress live on the map, from the restaurant to your doorstep, with accurate ETAs.</p>
                 </div>
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">🔄</div>
-                    <h3>Seamless Integration</h3>
-                    <p>Connect with your existing tools and workflows through our extensive API and pre-built integrations with popular platforms.</p>
+                    <h3>Wide Restaurant Selection</h3>
+                    <p>Explore a vast array of cuisines and restaurants, from local favorites to international delights, all in one app.</p>
                 </div>
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">📱</div>
-                    <h3>Mobile Ready</h3>
-                    <p>Access your data and tools anywhere with our responsive design and native mobile applications for iOS and Android.</p>
+                    <h3>Personalized Recommendations</h3>
+                    <p>Discover new dishes and restaurants tailored to your taste with our intelligent recommendation engine.</p>
                 </div>
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">🎯</div>
-                    <h3>Smart Automation</h3>
-                    <p>Automate repetitive tasks and workflows with intelligent automation that learns and adapts to your business processes.</p>
+                    <h3>Easy Reordering</h3>
+                    <p>Quickly reorder your favorite meals with just a few taps, saving you time and effort.</p>
                 </div>
             </div>
         </div>
@@ -976,13 +977,13 @@
                     <div class="testimonials-slide">
                         <div class="testimonial-card scroll-animate">
                             <div class="testimonial-text">
-                                Nexus Digital completely transformed our operations. We've seen a 300% increase in productivity and our customers are happier than ever. The platform is intuitive and the support team is outstanding.
+                                makanApa has completely changed how I order food. It's so easy to use, and the delivery is always fast. I've discovered so many new local restaurants through their app!
                             </div>
                             <div class="testimonial-author">
                                 <div class="author-avatar">SJ</div>
                                 <div class="author-info">
                                     <h4>Sarah Johnson</h4>
-                                    <p>CEO, TechVenture Inc.</p>
+                                    <p>Food Enthusiast</p>
                                 </div>
                             </div>
                         </div>
@@ -990,13 +991,13 @@
                     <div class="testimonials-slide">
                         <div class="testimonial-card scroll-animate">
                             <div class="testimonial-text">
-                                The analytics capabilities are incredible. We can now make data-driven decisions in real-time and the ROI has been phenomenal. This is exactly what we needed to scale our business.
+                                The real-time tracking is a game-changer. I always know exactly where my food is, and the delivery drivers are always polite and efficient. Highly recommend makanApa!
                             </div>
                             <div class="testimonial-author">
                                 <div class="author-avatar">MC</div>
                                 <div class="author-info">
                                     <h4>Michael Chen</h4>
-                                    <p>CTO, Innovation Labs</p>
+                                    <p>Busy Professional</p>
                                 </div>
                             </div>
                         </div>
@@ -1004,13 +1005,13 @@
                     <div class="testimonials-slide">
                         <div class="testimonial-card scroll-animate">
                             <div class="testimonial-text">
-                                Implementation was seamless and the team was with us every step of the way. The platform has exceeded our expectations and continues to deliver value month after month.
+                                I love the variety of restaurants available on makanApa. It's my go-to app for all my food cravings, whether I'm looking for a quick bite or a gourmet meal.
                             </div>
                             <div class="testimonial-author">
                                 <div class="author-avatar">ER</div>
                                 <div class="author-info">
                                     <h4>Emily Rodriguez</h4>
-                                    <p>COO, Global Solutions</p>
+                                    <p>Food Blogger</p>
                                 </div>
                             </div>
                         </div>
@@ -1034,12 +1035,12 @@
         <div class="container">
             <div class="contact-content">
                 <div class="contact-info scroll-animate">
-                    <h2>Ready to Transform Your Business?</h2>
-                    <p>Get in touch with our team to discuss how we can help accelerate your digital transformation journey.</p>
+                    <h2>Ready to Order Your Next Meal?</h2>
+                    <p>Get in touch with our support team or explore partnership opportunities with makanApa.</p>
                     <div class="contact-details">
                         <div class="contact-detail">
                             <i>📧</i>
-                            <span>hello@nexusdigital.com</span>
+                            <span>support@makanapa.com</span>
                         </div>
                         <div class="contact-detail">
                             <i>📞</i>
@@ -1061,8 +1062,8 @@
                         <input type="email" id="email" name="email" placeholder="Enter your email address" required>
                     </div>
                     <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" placeholder="Enter your company name">
+                        <label for="company">Restaurant Name (optional)</label>
+                        <input type="text" id="company" name="company" placeholder="Enter your restaurant name (optional)">
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
@@ -1079,8 +1080,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="#" class="logo">Nexus Digital</a>
-                    <p>Transforming businesses worldwide with cutting-edge digital solutions. We help companies unlock their full potential through innovative technology and strategic insights.</p>
+                    <a href="#" class="logo">makanApa</a>
+                    <p>Your ultimate food delivery partner, bringing delicious meals from your favorite restaurants right to your doorstep. Fast, fresh, and convenient.</p>
                     <div class="social-links">
                         <a href="#" class="social-link">📘</a>
                         <a href="#" class="social-link">🐦</a>
@@ -1090,24 +1091,24 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Solutions</h3>
+                    <h3>Explore</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Digital Transformation</a></li>
-                        <li><a href="#">Cloud Migration</a></li>
-                        <li><a href="#">Data Analytics</a></li>
-                        <li><a href="#">AI Integration</a></li>
-                        <li><a href="#">Security Solutions</a></li>
+                        <li><a href="#">Order Food</a></li>
+                        <li><a href="#">Become a Partner Restaurant</a></li>
+                        <li><a href="#">Deliver with us</a></li>
+                        <li><a href="#">Promotions</a></li>
+                        <li><a href="#">Gift Cards</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Company</h3>
                     <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">About makanApa</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">News & Blog</a></li>
-                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Investor Relations</a></li>
                     </ul>
                 </div>
                 
@@ -1122,7 +1123,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Nexus Digital. All rights reserved.</p>
+                <p>&copy; 2025 makanApa. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -1132,6 +1133,7 @@
         </div>
     </footer>
 
+    <script src="assets/libs/countUp.umd.js"></script>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1147,192 +1149,232 @@
             });
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Navbar background on scroll
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(15, 15, 15, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(15, 15, 15, 0.95)';
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            observer.observe(el);
-        });
+            // Testimonials carousel functionality
+            const track = document.querySelector('.testimonials-track');
+            const slides = Array.from(track.children).filter(child => child.classList.contains('testimonials-slide'));
+            const totalSlides = slides.length;
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let currentSlide = 0;
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(15, 15, 15, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(15, 15, 15, 0.95)';
-            }
-        });
-
-        // Testimonials carousel functionality
-        const track = document.querySelector('.testimonials-track');
-        const slides = Array.from(track.children).filter(child => child.classList.contains('testimonials-slide'));
-        const totalSlides = slides.length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const dots = document.querySelectorAll('.carousel-dot');
-        let currentSlide = 0;
-
-        // Set track and slide widths dynamically
-        if (totalSlides > 0) {
-            track.style.width = `${totalSlides * 100}%`;
-            slides.forEach(slide => {
-                slide.style.width = `${100 / totalSlides}%`;
-            });
-        }
-
-        function updateCarousel() {
-            if (totalSlides === 0) return;
-            const translateX = -currentSlide * (100 / totalSlides);
-            track.style.transform = `translateX(${translateX}%)`;
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        function nextSlide() {
-            if (totalSlides === 0) return;
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            if (totalSlides === 0) return;
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        function goToSlide(slideIndex) {
-            if (totalSlides === 0) return;
-            currentSlide = slideIndex;
-            updateCarousel();
-        }
-
-        if (totalSlides > 0) {
-            // Event listeners
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => goToSlide(index));
-            });
-
-            // Auto-play functionality
-            let autoPlayInterval;
-            
-            function startAutoPlay() {
-                autoPlayInterval = setInterval(nextSlide, 4000);
+            // Set track and slide widths dynamically
+            if (totalSlides > 0) {
+                track.style.width = `${totalSlides * 100}%`;
+                slides.forEach(slide => {
+                    slide.style.width = `${100 / totalSlides}%`;
+                });
             }
 
-            function stopAutoPlay() {
-                clearInterval(autoPlayInterval);
+            function updateCarousel() {
+                if (totalSlides === 0) return;
+                const translateX = -currentSlide * (100 / totalSlides);
+                track.style.transform = `translateX(${translateX}%)`;
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
             }
 
-            startAutoPlay();
-            const carousel = document.querySelector('.testimonials-carousel');
-            carousel.addEventListener('mouseenter', stopAutoPlay);
-            carousel.addEventListener('mouseleave', startAutoPlay);
-            
-            // Initialize carousel
-            updateCarousel();
-        }
-
-        // Newsletter subscription
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const emailInput = this.querySelector('.newsletter-input');
-            const submitBtn = this.querySelector('.newsletter-btn');
-            const originalText = submitBtn.textContent;
-            
-            if (emailInput.value.trim() === '') {
-                emailInput.focus();
-                return;
+            function nextSlide() {
+                if (totalSlides === 0) return;
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
             }
-            
-            submitBtn.textContent = 'Subscribing...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                submitBtn.textContent = 'Subscribed!';
-                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                emailInput.value = '';
+
+            function prevSlide() {
+                if (totalSlides === 0) return;
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            function goToSlide(slideIndex) {
+                if (totalSlides === 0) return;
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+
+            if (totalSlides > 0) {
+                // Event listeners
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => goToSlide(index));
+                });
+
+                // Auto-play functionality
+                let autoPlayInterval;
+                
+                function startAutoPlay() {
+                    autoPlayInterval = setInterval(nextSlide, 4000);
+                }
+
+                function stopAutoPlay() {
+                    clearInterval(autoPlayInterval);
+                }
+
+                startAutoPlay();
+                const carousel = document.querySelector('.testimonials-carousel');
+                carousel.addEventListener('mouseenter', stopAutoPlay);
+                carousel.addEventListener('mouseleave', startAutoPlay);
+                
+                // Initialize carousel
+                updateCarousel();
+            }
+
+            // Newsletter subscription
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const emailInput = this.querySelector('.newsletter-input');
+                const submitBtn = this.querySelector('.newsletter-btn');
+                const originalText = submitBtn.textContent;
+                
+                if (emailInput.value.trim() === '') {
+                    emailInput.focus();
+                    return;
+                }
+                
+                submitBtn.textContent = 'Subscribing...';
+                submitBtn.disabled = true;
                 
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                }, 2000);
-            }, 1000);
-        });
+                    submitBtn.textContent = 'Subscribed!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    emailInput.value = '';
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    }, 2000);
+                }, 1000);
+            });
 
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: this.querySelector('#name').value,
-                email: this.querySelector('#email').value,
-                company: this.querySelector('#company').value,
-                message: this.querySelector('#message').value
-            };
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                submitBtn.textContent = 'Message Sent!';
-                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            // Form submission
+            document.querySelector('.contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                // Reset form
-                this.reset();
+                // Get form data
+                const formData = {
+                    name: this.querySelector('#name').value,
+                    email: this.querySelector('#email').value,
+                    company: this.querySelector('#company').value,
+                    message: this.querySelector('#message').value
+                };
+                
+                // Simulate form submission
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
                 
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                }, 2000);
-            }, 1500);
-        });
-
-        // Add some dynamic interactions
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+                    submitBtn.textContent = 'Message Sent!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    }, 2000);
+                }, 1500);
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const heroContent = document.querySelector('.hero-content');
-            
-            if (hero && heroContent) {
-                heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            // Add some dynamic interactions
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Zoom-out effect for hero content
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroContent = document.querySelector('.hero-content');
+                
+                if (heroContent) {
+                    const scale = Math.max(0, 1 - scrolled / window.innerHeight);
+                    heroContent.style.transform = `scale(${scale})`;
+                }
+            });
+
+            // CountUp animation for stats
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                const countUpInstances = [];
+
+                const roiIncreaseEl = document.getElementById('roi-increase');
+                const uptimeEl = document.getElementById('uptime');
+                const supportEl = document.getElementById('support');
+
+                console.log('window.countUp:', window.countUp);
+
+                if (roiIncreaseEl && typeof window.countUp !== 'undefined' && typeof window.countUp.CountUp !== 'undefined') {
+                    const roiIncrease = new window.countUp.CountUp(roiIncreaseEl, 30, { startVal: 0, suffix: ' Min' });
+                    countUpInstances.push(roiIncrease);
+                }
+                if (uptimeEl && typeof window.countUp !== 'undefined' && typeof window.countUp.CountUp !== 'undefined') {
+                    const uptime = new window.countUp.CountUp(uptimeEl, 500, { startVal: 0, suffix: '+' });
+                    countUpInstances.push(uptime);
+                }
+                // No CountUp for supportEl as it's not a numerical value
+
+                const statsObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            console.log('Stats section intersected!');
+                            countUpInstances.forEach(instance => {
+                                if (!instance.error) {
+                                    instance.start();
+                                } else {
+                                    console.error('CountUp Error:', instance.error);
+                                }
+                            });
+                            observer.unobserve(entry.target); // Stop observing once animated
+                        }
+                    });
+                }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+                statsObserver.observe(statsSection);
             }
-        });
-    </script>
+        </script>
 </body>
 </html>
