@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0day - From Threat to Resilience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        overflow-x: hidden;
+        background: #0a0a0a;
+        color: white;
+    }
+
+    .hero-section {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    /* Gradient Background */
+    .gradient-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 20%, rgba(124, 34, 191, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 30%, rgba(229, 34, 45, 0.25) 0%, transparent 50%),
+            radial-gradient(circle at 40% 70%, rgba(17, 80, 196, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(124, 34, 191, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 10% 90%, rgba(229, 34, 45, 0.15) 0%, transparent 50%);
+        background-color: #0a0a0a;
+        filter: blur(1px);
+        z-index: -1;
+    }
+
+    /* Navigation */
+    .nav-container {
+        position: fixed;
+        top: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        width: calc(100% - 3rem);
+        max-width: 1200px;
+    }
+
+    .navbar {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 60px;
+        padding: 0.75rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #7C22BF, #E5222D, #1150C4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+        color: white;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .sign-in {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .sign-in:hover {
+        color: white;
+    }
+
+    .get-started-nav {
+        background: linear-gradient(135deg, #7C22BF, #1150C4);
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(124, 34, 191, 0.3);
+    }
+
+    .get-started-nav:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(124, 34, 191, 0.4);
+    }
+
+    /* Hero Content */
+    .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        width: 100%;
+        padding-top: 2rem;
+    }
+
+    .hero-text {
+        z-index: 10;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+
+    .hero-title .gradient-text {
+        background: linear-gradient(135deg, #7C22BF, #E5222D, #1150C4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #7C22BF, #1150C4);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(124, 34, 191, 0.3);
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(124, 34, 191, 0.4);
+    }
+
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.95);
+        color: #2F3B65;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+        transform: translateY(-3px);
+        background: white;
+        box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-visual {
+        position: relative;
+        z-index: 10;
+    }
+
+    .dashboard-mockup {
+        background: rgba(15, 23, 42, 0.95);
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dashboard-mockup::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #7C22BF, #E5222D, #1150C4);
+    }
+
+    .dashboard-header {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .dashboard-title {
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .status-indicators {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10B981;
+        animation: pulse 2s infinite;
+    }
+
+    .status-dot.warning { background: #F59E0B; }
+    .status-dot.error { background: #EF4444; }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .terminal-content {
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #10B981;
+    }
+
+    .terminal-line {
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        animation: typewriter 0.5s ease-in-out forwards;
+    }
+
+    .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+    .terminal-line:nth-child(2) { animation-delay: 1s; }
+    .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+    .terminal-line:nth-child(4) { animation-delay: 2s; }
+    .terminal-line:nth-child(5) { animation-delay: 2.5s; }
+
+    @keyframes typewriter {
+        from { opacity: 0; transform: translateX(-10px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .command { color: #7C22BF; }
+    .success { color: #10B981; }
+    .warning { color: #F59E0B; }
+    .error { color: #EF4444; }
+
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .metric-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #10B981;
+        margin-bottom: 0.25rem;
+    }
+
+    .metric-label {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+
+        .navbar {
+            padding: 0.75rem 1rem;
+        }
+
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+            padding-top: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+        }
+
+        .cta-buttons {
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.9rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-section {
+            padding: 0 1rem;
+        }
+
+        .nav-container {
+            width: calc(100% - 2rem);
+        }
+
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .dashboard-mockup {
+            padding: 1rem;
+        }
+
+        .metrics-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav class="navbar">
+            <div class="logo">0day</div>
+            <ul class="nav-links">
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#signin" class="sign-in">Sign In</a>
+                <a href="#getstarted" class="get-started-nav">Get Started</a>
+            </div>
+        </nav>
+    </div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="gradient-bg"></div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                Master Real-World<br>
+                <span class="gradient-text">Cybersecurity Skills</span>
+            </h1>
+            <p class="hero-subtitle">
+                0day delivers high-intensity cybersecurity training inspired by the industry's toughest certifications.
+            </p>
+            <p class="hero-description">
+                Advance your skills with hands-on labs, real-world scenarios, and expert mentorship. Trusted by red teamers, pentesters, and SOC analysts worldwide.
+            </p>
+            <div class="cta-buttons">
+                <a href="#start" class="btn-primary">Start Learning Free</a>
+                <a href="#demo" class="btn-secondary">Watch Demo</a>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="dashboard-mockup">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">Penetration Testing Lab</div>
+                    <div class="status-indicators">
+                        <div class="status-dot"></div>
+                        <div class="status-dot warning"></div>
+                        <div class="status-dot error"></div>
+                    </div>
+                </div>
+                
+                <div class="terminal-content">
+                    <div class="terminal-line"><span class="command">root@0day:~#</span> nmap -sS -O target.lab</div>
+                    <div class="terminal-line"><span class="success">PORT     STATE SERVICE</span></div>
+                    <div class="terminal-line"><span class="success">22/tcp   open  ssh</span></div>
+                    <div class="terminal-line"><span class="warning">80/tcp   open  http</span></div>
+                    <div class="terminal-line"><span class="command">root@0day:~#</span> <span class="success">exploit/multi/handler</span></div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">47</div>
+                        <div class="metric-label">Vulnerabilities</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">12</div>
+                        <div class="metric-label">Critical</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">98%</div>
+                        <div class="metric-label">Coverage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.12)';
+            navbar.style.backdropFilter = 'blur(25px)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.08)';
+            navbar.style.backdropFilter = 'blur(20px)';
+        }
+    });
+
+    // Add interactive hover effects for buttons
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Add parallax effect to gradient background
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const gradientBg = document.querySelector('.gradient-bg');
+        gradientBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+    });
+
+    // Add typing effect animation restart on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const terminalLines = entry.target.querySelectorAll('.terminal-line');
+                terminalLines.forEach((line, index) => {
+                    line.style.animation = 'none';
+                    setTimeout(() => {
+                        line.style.animation = `typewriter 0.5s ease-in-out ${index * 0.5}s forwards`;
+                    }, 100);
+                });
+            }
+        });
+    });
+
+    observer.observe(document.querySelector('.terminal-content'));
+</script>
+
+</body>
+</html>

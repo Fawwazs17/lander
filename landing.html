@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>0day - Cybersecurity Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+      body {
+        overflow-x: hidden; /* Prevent horizontal scroll due to parallax */
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #0062ff, #ff0101);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .workflow-step::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background: #e5e7eb;
+        z-index: 0;
+      }
+      .workflow-step:last-child::before {
+        display: none;
+      }
+      .pricing-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Minimalist Gradient Animation for Hero Section */
+      .hero-animated-gradient {
+        background: linear-gradient(-45deg, #e0f2fe, #c3dafe, #a7c0fe, #8bb0fe);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Modern blurred gradient shapes for hero background */
+      .hero-bg-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.7;
+        z-index: 0;
+        pointer-events: none;
+        animation: float 20s ease-in-out infinite;
+      }
+      .hero-bg-shape.red {
+        background: radial-gradient(circle at 30% 30%, #ff3b82 0%, #a21caf 80%);
+        width: 800px;
+        height: 800px;
+        top: 50%;
+        left: 40%;
+        animation: floatRed 25s ease-in-out infinite;
+      }
+      .hero-bg-shape.blue {
+        background: radial-gradient(circle at 70% 60%, #2563eb 0%, #a21caf 80%);
+        width: 700px;
+        height: 700px;
+        top: 20%;
+        left: 10%;
+        transform: translateX(-50%);
+        animation: floatBlue 30s ease-in-out infinite;
+      }
+      .hero-bg-shape.purple {
+        background: radial-gradient(circle at 60% 80%, #a21caf 0%, #6366f1 80%);
+        width: 750px;
+        height: 750px;
+        top: 70%;
+        right: 60%;
+        animation: floatPurple 22s ease-in-out infinite;
+      }
+      .hero-bg-shape.green {
+        background: radial-gradient(circle at 40% 40%, #10b981 0%, #059669 80%);
+        width: 600px;
+        height: 600px;
+        top: 50%;
+        left: 20%;
+        transform: translateY(-50%);
+        animation: floatGreen 28s ease-in-out infinite;
+      }
+      .hero-bg-shape.orange {
+        background: radial-gradient(circle at 50% 50%, #f59e0b 0%, #d97706 80%);
+        width: 650px;
+        height: 650px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: floatOrange 26s ease-in-out infinite;
+      }
+
+      /* Floating animations for each circle */
+      @keyframes floatRed {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(-30px, -20px) rotate(90deg);
+        }
+        50% {
+          transform: translate(20px, -40px) rotate(180deg);
+        }
+        75% {
+          transform: translate(-15px, 25px) rotate(270deg);
+        }
+      }
+
+      @keyframes floatBlue {
+        0%,
+        100% {
+          transform: translateX(-50%) rotate(0deg);
+        }
+        33% {
+          transform: translateX(-50%) translate(25px, -15px) rotate(120deg);
+        }
+        66% {
+          transform: translateX(-50%) translate(-20px, 35px) rotate(240deg);
+        }
+      }
+
+      @keyframes floatPurple {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        20% {
+          transform: translate(35px, -25px) rotate(72deg);
+        }
+        40% {
+          transform: translate(-25px, -15px) rotate(144deg);
+        }
+        60% {
+          transform: translate(20px, 40px) rotate(216deg);
+        }
+        80% {
+          transform: translate(-35px, 20px) rotate(288deg);
+        }
+      }
+
+      @keyframes floatGreen {
+        0%,
+        100% {
+          transform: translateY(-5%) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-50%) translate(25px, -20px) rotate(90deg);
+        }
+        50% {
+          transform: translateY(-50%) translate(-20px, 40px) rotate(180deg);
+        }
+        75% {
+          transform: translateY(-50%) translate(15px, -30px) rotate(270deg);
+        }
+      }
+
+      @keyframes floatOrange {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        33% {
+          transform: translate(-50%, -50%) translate(20px, -20px) rotate(120deg);
+        }
+        66% {
+          transform: translate(-50%, -50%) translate(-30px, 40px) rotate(240deg);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-bg-shape.red,
+        .hero-bg-shape.blue,
+        .hero-bg-shape.purple,
+        .hero-bg-shape.green,
+        .hero-bg-shape.orange {
+          width: 1200px;
+          height: 1200px;
+          filter: blur(40px);
+        }
+        .hero-bg-shape.red {
+          top: -400px;
+          left: -400px;
+        }
+        .hero-bg-shape.blue {
+          top: -200px;
+          left: -600px;
+        }
+        .hero-bg-shape.purple {
+          top: -200px;
+          right: -600px;
+        }
+        .hero-bg-shape.green {
+          top: 200px;
+          left: -600px;
+        }
+        .hero-bg-shape.orange {
+          top: 200px;
+          right: -600px;
+        }
+      }
+
+      /* Mobile-specific improvements */
+      @media (max-width: 640px) {
+        .hero-bg-shape.red,
+        .hero-bg-shape.blue,
+        .hero-bg-shape.purple,
+        .hero-bg-shape.green,
+        .hero-bg-shape.orange {
+          width: 800px;
+          height: 800px;
+          filter: blur(30px);
+        }
+
+        .workflow-step::before {
+          display: none;
+        }
+
+        .marquee-container {
+          height: 80px;
+        }
+
+        .marquee {
+          gap: 32px;
+        }
+
+        .logo-item img {
+          height: 40px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-bg-shape.red,
+        .hero-bg-shape.blue,
+        .hero-bg-shape.purple,
+        .hero-bg-shape.green,
+        .hero-bg-shape.orange {
+          width: 600px;
+          height: 600px;
+          filter: blur(20px);
+        }
+
+        .marquee-container {
+          height: 60px;
+        }
+
+        .marquee {
+          gap: 24px;
+        }
+
+        .logo-item img {
+          height: 32px !important;
+        }
+      }
+
+      /* Marquee animation for logos - FIXED */
+      .marquee-container {
+        overflow: visible;
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background: #fff;
+      }
+      .marquee {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: marquee-scroll 18s linear infinite;
+        gap: 48px;
+      }
+      .logo-item {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @keyframes marquee-scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased text-gray-800">
+    <!-- Parallax SVG Shapes -->
+
+    <!-- Navbar -->
+    <div class="fixed top-0 left-0 right-0 z-50 pt-6">
+      <div class="flex justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center">
+          <a href="#" class="text-lg font-bold text-gray-800">
+            <img
+              class="h-10"
+              src="https://zeroday-sec.com/certs/inertia/assets/images/0dayLogo.png"
+              alt="Logo"
+            />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div
+          class="hidden lg:flex items-center gap-3 bg-white/5 border border-gray-200 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg"
+        >
+          <a
+            href="#features"
+            class="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-gray-800 hover:text-indigo-600"
+            >Features</a
+          >
+          <a
+            href="#how-it-works"
+            class="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-gray-800 hover:text-indigo-600"
+            >How It Works</a
+          >
+          <a
+            href="#pricing"
+            class="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-gray-800 hover:text-indigo-600"
+            >Pricing</a
+          >
+          <a
+            href="#"
+            class="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-gray-800 hover:text-indigo-600"
+            >Resources</a
+          >
+        </div>
+
+        <!-- Desktop Auth Buttons -->
+        <div
+          class="hidden lg:flex items-center gap-3 bg-white/5 border border-gray-200 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg"
+        >
+          <a
+            href="#"
+            class="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-gray-800 hover:text-indigo-600"
+            >Sign In</a
+          >
+          <a
+            href="#"
+            class="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-white gradient-bg"
+            >Get Started</a
+          >
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-gray-800 hover:text-indigo-600 focus:outline-none focus:text-indigo-600"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-lg"
+      >
+        <div class="px-4 py-6 space-y-4">
+          <a
+            href="#features"
+            class="block text-base font-medium text-gray-800 hover:text-indigo-600 py-2"
+            >Features</a
+          >
+          <a
+            href="#how-it-works"
+            class="block text-base font-medium text-gray-800 hover:text-indigo-600 py-2"
+            >How It Works</a
+          >
+          <a
+            href="#pricing"
+            class="block text-base font-medium text-gray-800 hover:text-indigo-600 py-2"
+            >Pricing</a
+          >
+          <a
+            href="#"
+            class="block text-base font-medium text-gray-800 hover:text-indigo-600 py-2"
+            >Resources</a
+          >
+          <div class="pt-4 border-t border-gray-200">
+            <a
+              href="#"
+              class="block text-base font-medium text-gray-800 hover:text-indigo-600 py-2"
+              >Sign In</a
+            >
+            <a
+              href="#"
+              class="block text-base font-medium text-white gradient-bg rounded-md py-2 px-4 text-center mt-2"
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      class="pt-20 pb-12 md:pt-28 md:pb-20 min-h-screen flex items-center relative overflow-hidden"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <div class="hero-bg-shape red"></div>
+      <div class="hero-bg-shape blue"></div>
+      <div class="hero-bg-shape purple"></div>
+      <div class="hero-bg-shape green"></div>
+      <div class="hero-bg-shape orange"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+          <div
+            class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
+            <h1
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold text-gray-900"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+            >
+              <span class="block text-white">Create, Manage & Share</span>
+              <span class="block gradient-text">Digital Certificates</span>
+            </h1>
+            <p
+              class="mt-3 text-base text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              Certhora helps event organizers issue verifiable certificates
+              online with ease. Professional, secure, and trusted by leading
+              brands.
+            </p>
+            <div
+              class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0"
+            >
+              <div
+                class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3"
+              >
+                <a
+                  href="#"
+                  class="flex items-center justify-center px-6 sm:px-8 py-3 border border-transparent text-base font-medium rounded-md text-white gradient-bg hover:shadow-md md:py-4 md:text-lg md:px-10"
+                  data-aos="zoom-in"
+                  data-aos-delay="500"
+                >
+                  Get Started Free
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center justify-center px-6 sm:px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-indigo-50 hover:bg-indigo-100 md:py-4 md:text-lg md:px-10"
+                  data-aos="zoom-in"
+                  data-aos-delay="600"
+                >
+                  Watch Demo
+                </a>
+              </div>
+              <p
+                class="mt-3 text-sm text-gray-500"
+                data-aos="fade-up"
+                data-aos-delay="700"
+              >
+                No credit card required. 14-day free trial.
+              </p>
+            </div>
+          </div>
+          <div
+            class="mt-8 sm:mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
+            <div
+              class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md"
+            >
+              <div
+                class="relative block w-full bg-white rounded-lg overflow-hidden"
+                data-aos="zoom-in"
+                data-aos-delay="400"
+              >
+                <img
+                  class="w-full"
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                  alt="Digital certificate example"
+                />
+                <div class="absolute inset-0 bg-indigo-600 opacity-20"></div>
+              </div>
+              <div
+                class="absolute -bottom-8 -right-8 w-32 h-32 sm:w-56 sm:h-56 bg-indigo-100 rounded-full opacity-20"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted By Brands -->
+    <section class="py-12 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p
+          class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide"
+        >
+          Trusted by leading cybersecurity firms worldwide
+        </p>
+        <div class="marquee-container mt-6">
+          <div class="marquee">
+            <div class="logo-item">
+              <img
+                class="h-12 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                alt="Google"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-8 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_logo.svg"
+                alt="Microsoft"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-10 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Deloitte.svg"
+                alt="Deloitte"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-10 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                alt="Netflix"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-8 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg"
+                alt="Samsung Security"
+              />
+            </div>
+            <!-- Duplicate logos for seamless loop -->
+            <div class="logo-item">
+              <img
+                class="h-12 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                alt="Google"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-8 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_logo.svg"
+                alt="Microsoft"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-10 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Deloitte.svg"
+                alt="Deloitte"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-10 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                alt="Netflix"
+              />
+            </div>
+            <div class="logo-item">
+              <img
+                class="h-8 opacity-60 hover:opacity-100 transition duration-150"
+                src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg"
+                alt="Samsung Security"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section
+      id="features"
+      class="py-16 bg-gray-50"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="lg:text-center"
+          data-aos="fade-down"
+          data-aos-duration="1500"
+        >
+          <h2
+            class="text-base text-indigo-600 font-semibold tracking-wide uppercase"
+          >
+            Course Features
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            Everything you need to become a cybersecurity expert
+          </p>
+          <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            From foundational concepts to advanced techniques, 0day offers
+            comprehensive courses for all skill levels.
+          </p>
+        </div>
+
+        <div class="mt-16">
+          <div
+            class="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            <!-- Feature 1 -->
+            <div
+              class="pt-6 feature-card transition duration-300 ease-in-out"
+              data-aos="flip-left"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+            >
+              <div
+                class="flow-root bg-white rounded-lg px-4 sm:px-6 pb-6 sm:pb-8 h-full shadow-md hover:shadow-xl"
+              >
+                <div class="-mt-6">
+                  <div>
+                    <span
+                      class="inline-flex items-center justify-center p-3 gradient-bg rounded-md shadow-lg"
+                    >
+                      <i class="fas fa-paint-brush text-white text-xl"></i>
+                    </span>
+                  </div>
+                  <h3
+                    class="mt-6 sm:mt-8 text-lg font-medium text-gray-900 tracking-tight"
+                  >
+                    Hands-on Labs
+                  </h3>
+                  <p class="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500">
+                    Practice your skills in real-world scenarios with our
+                    interactive lab environments.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div
+              class="pt-6 feature-card transition duration-300 ease-in-out"
+              data-aos="flip-left"
+              data-aos-delay="200"
+              data-aos-duration="1000"
+            >
+              <div
+                class="flow-root bg-white rounded-lg px-4 sm:px-6 pb-6 sm:pb-8 h-full shadow-md hover:shadow-xl"
+              >
+                <div class="-mt-6">
+                  <div>
+                    <span
+                      class="inline-flex items-center justify-center p-3 gradient-bg rounded-md shadow-lg"
+                    >
+                      <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </span>
+                  </div>
+                  <h3
+                    class="mt-6 sm:mt-8 text-lg font-medium text-gray-900 tracking-tight"
+                  >
+                    Expert Instructors
+                  </h3>
+                  <p class="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500">
+                    Learn from leading cybersecurity professionals with years of
+                    industry experience.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div
+              class="pt-6 feature-card transition duration-300 ease-in-out"
+              data-aos="flip-left"
+              data-aos-delay="300"
+              data-aos-duration="1000"
+            >
+              <div
+                class="flow-root bg-white rounded-lg px-4 sm:px-6 pb-6 sm:pb-8 h-full shadow-md hover:shadow-xl"
+              >
+                <div class="-mt-6">
+                  <div>
+                    <span
+                      class="inline-flex items-center justify-center p-3 gradient-bg rounded-md shadow-lg"
+                    >
+                      <i class="fas fa-users text-white text-xl"></i>
+                    </span>
+                  </div>
+                  <h3
+                    class="mt-6 sm:mt-8 text-lg font-medium text-gray-900 tracking-tight"
+                  >
+                    Career Guidance
+                  </h3>
+                  <p class="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500">
+                    Get personalized career advice and job placement assistance
+                    to kickstart your cybersecurity career.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div
+              class="pt-6 feature-card transition duration-300 ease-in-out"
+              data-aos="flip-left"
+              data-aos-delay="400"
+              data-aos-duration="1000"
+            >
+              <div
+                class="flow-root bg-white rounded-lg px-4 sm:px-6 pb-6 sm:pb-8 h-full shadow-md hover:shadow-xl"
+              >
+                <div class="-mt-6">
+                  <div>
+                    <span
+                      class="inline-flex items-center justify-center p-3 gradient-bg rounded-md shadow-lg"
+                    >
+                      <i class="fas fa-envelope text-white text-xl"></i>
+                    </span>
+                  </div>
+                  <h3
+                    class="mt-6 sm:mt-8 text-lg font-medium text-gray-900 tracking-tight"
+                  >
+                    Certification Prep
+                  </h3>
+                  <p class="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500">
+                    Prepare for industry-recognized certifications with our
+                    comprehensive study materials and practice exams.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div
+              class="pt-6 feature-card transition duration-300 ease-in-out"
+              data-aos="flip-left"
+              data-aos-delay="500"
+              data-aos-duration="1000"
+            >
+              <div
+                class="flow-root bg-white rounded-lg px-4 sm:px-6 pb-6 sm:pb-8 h-full shadow-md hover:shadow-xl"
+              >
+                <div class="-mt-6">
+                  <div>
+                    <span
+                      class="inline-flex items-center justify-center p-3 gradient-bg rounded-md shadow-lg"
+                    >
+                      <i class="fas fa-chart-line text-white text-xl"></i>
+                    </span>
+                  </div>
+                  <h3
+                    class="mt-6 sm:mt-8 text-lg font-medium text-gray-900 tracking-tight"
+                  >
+                    Community Support
+                  </h3>
+                  <p class="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500">
+                    Join our vibrant community of cybersecurity enthusiasts and
+                    get support from peers and mentors.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div
+              class="pt-6 feature-card transition duration-300 ease-in-out"
+              data-aos="flip-left"
+              data-aos-delay="600"
+              data-aos-duration="1000"
+            >
+              <div
+                class="flow-root bg-white rounded-lg px-4 sm:px-6 pb-6 sm:pb-8 h-full shadow-md hover:shadow-xl"
+              >
+                <div class="-mt-6">
+                  <div>
+                    <span
+                      class="inline-flex items-center justify-center p-3 gradient-bg rounded-md shadow-lg"
+                    >
+                      <i class="fas fa-lock text-white text-xl"></i>
+                    </span>
+                  </div>
+                  <h3
+                    class="mt-6 sm:mt-8 text-lg font-medium text-gray-900 tracking-tight"
+                  >
+                    Flexible Learning
+                  </h3>
+                  <p class="mt-4 sm:mt-5 text-sm sm:text-base text-gray-500">
+                    Learn at your own pace with on-demand courses and flexible
+                    scheduling options.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section
+      id="how-it-works"
+      class="py-16 bg-white"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2
+            class="text-base text-indigo-600 font-semibold tracking-wide uppercase"
+          >
+            Workflow
+          </h2>
+          <p
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            Simple 4-step process
+          </p>
+          <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            From setup to distribution, we've made the certificate creation
+            process effortless.
+          </p>
+        </div>
+
+        <div class="mt-16">
+          <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Step 1 -->
+            <div class="relative workflow-step pb-8 lg:pb-0">
+              <div
+                class="relative z-10 flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white mx-auto lg:mx-0"
+              >
+                <span class="text-lg font-bold">1</span>
+              </div>
+              <div class="mt-5 text-center lg:mt-8 lg:text-left">
+                <h3 class="text-lg font-medium text-gray-900">
+                  Design Your Certificate
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-gray-500">
+                  Choose a template or create your own design with our
+                  drag-and-drop editor.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative workflow-step pb-8 lg:pb-0">
+              <div
+                class="relative z-10 flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white mx-auto lg:mx-0"
+              >
+                <span class="text-lg font-bold">2</span>
+              </div>
+              <div class="mt-5 text-center lg:mt-8 lg:text-left">
+                <h3 class="text-lg font-medium text-gray-900">
+                  Add Recipient Data
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-gray-500">
+                  Upload your attendee list or enter details manually for each
+                  certificate.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative workflow-step pb-8 lg:pb-0">
+              <div
+                class="relative z-10 flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white mx-auto lg:mx-0"
+              >
+                <span class="text-lg font-bold">3</span>
+              </div>
+              <div class="mt-5 text-center lg:mt-8 lg:text-left">
+                <h3 class="text-lg font-medium text-gray-900">
+                  Generate Certificates
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-gray-500">
+                  Our system automatically creates all certificates with unique
+                  verification codes.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative workflow-step">
+              <div
+                class="relative z-10 flex items-center justify-center h-12 w-12 rounded-md gradient-bg text-white mx-auto lg:mx-0"
+              >
+                <span class="text-lg font-bold">4</span>
+              </div>
+              <div class="mt-5 text-center lg:mt-8 lg:text-left">
+                <h3 class="text-lg font-medium text-gray-900">
+                  Distribute & Track
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-gray-500">
+                  Send certificates via email or download them. Track views and
+                  verifications.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section
+      id="pricing"
+      class="py-16 bg-gray-50"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:flex-col sm:align-center">
+          <h2
+            class="text-3xl font-extrabold text-gray-900 text-center"
+            data-aos="fade-down"
+            data-aos-delay="200"
+          >
+            Pricing Plans
+          </h2>
+          <p
+            class="mt-5 text-xl text-gray-500 text-center max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            Simple, transparent pricing that scales with your needs.
+          </p>
+          <div
+            class="relative mt-6 bg-white rounded-lg p-0.5 flex self-center border border-gray-200"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+          >
+            <button
+              type="button"
+              id="monthly-toggle"
+              class="relative py-2 px-6 border border-transparent rounded-md shadow-sm text-sm font-medium text-white gradient-bg focus:outline-none"
+            >
+              Monthly billing
+            </button>
+            <button
+              type="button"
+              id="annual-toggle"
+              class="ml-0.5 relative py-2 px-6 border border-transparent rounded-md text-sm font-medium text-gray-700 bg-white focus:outline-none"
+            >
+              Annual billing
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8"
+        >
+          <!-- Basic Plan -->
+          <div
+            class="relative p-6 sm:p-8 bg-white border border-gray-200 rounded-2xl shadow-sm pricing-card transition duration-300 ease-in-out"
+            data-aos="flip-up"
+            data-aos-delay="200"
+          >
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-gray-900">Basic</h3>
+              <p class="mt-4 flex items-baseline text-gray-900">
+                <span class="text-3xl sm:text-4xl font-extrabold tracking-tight"
+                  >$19</span
+                >
+                <span class="ml-1 text-lg sm:text-xl font-semibold"
+                  >/month</span
+                >
+              </p>
+              <p class="mt-4 sm:mt-6 text-sm sm:text-base text-gray-500">
+                Perfect for individuals starting their cybersecurity journey
+              </p>
+              <ul role="list" class="mt-6 space-y-3 sm:space-y-4">
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Access to 5 foundational courses</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Basic lab access (10 hours/month)</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Community forum access</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Email support</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <a
+              href="#"
+              class="mt-6 sm:mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium gradient-bg text-white hover:shadow-md"
+            >
+              Get started
+            </a>
+          </div>
+
+          <!-- Professional Plan (Popular) -->
+          <div
+            class="relative p-6 sm:p-8 bg-white border-2 border-indigo-600 rounded-2xl shadow-sm pricing-card transition duration-300 ease-in-out"
+            data-aos="flip-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            >
+              <span
+                class="px-3 sm:px-4 py-1 text-xs font-semibold tracking-wide text-white gradient-bg rounded-full"
+                >MOST POPULAR</span
+              >
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-gray-900">Professional</h3>
+              <p class="mt-4 flex items-baseline text-gray-900">
+                <span class="text-3xl sm:text-4xl font-extrabold tracking-tight"
+                  >$49</span
+                >
+                <span class="ml-1 text-lg sm:text-xl font-semibold"
+                  >/month</span
+                >
+              </p>
+              <p class="mt-4 sm:mt-6 text-sm sm:text-base text-gray-500">
+                For aspiring cybersecurity professionals
+              </p>
+              <ul role="list" class="mt-6 space-y-3 sm:space-y-4">
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Access to all foundational & intermediate courses</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Unlimited lab access</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Dedicated mentor support</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Certification exam prep</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Career guidance</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <a
+              href="#"
+              class="mt-6 sm:mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium gradient-bg text-white hover:shadow-md"
+            >
+              Get started
+            </a>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div
+            class="relative p-6 sm:p-8 bg-white border border-gray-200 rounded-2xl shadow-sm pricing-card transition duration-300 ease-in-out"
+            data-aos="flip-up"
+            data-aos-delay="400"
+          >
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-gray-900">Enterprise</h3>
+              <p class="mt-4 flex items-baseline text-gray-900">
+                <span class="text-3xl sm:text-4xl font-extrabold tracking-tight"
+                  >$149</span
+                >
+                <span class="ml-1 text-lg sm:text-xl font-semibold"
+                  >/month</span
+                >
+              </p>
+              <p class="mt-4 sm:mt-6 text-sm sm:text-base text-gray-500">
+                For organizations and advanced professionals
+              </p>
+              <ul role="list" class="mt-6 space-y-3 sm:space-y-4">
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Access to all courses (including advanced)</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Customized training programs</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Dedicated account manager</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >On-site training options</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >API access for integrations</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span class="text-sm sm:text-base text-gray-500"
+                    >Priority 24/7 support</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <a
+              href="#"
+              class="mt-6 sm:mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium gradient-bg text-white hover:shadow-md"
+            >
+              Get started
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="gradient-bg py-12 sm:py-16 relative overflow-hidden"
+      data-aos="zoom-in"
+      data-aos-delay="100"
+    >
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+          opacity: 0.2;
+        "
+        data-parallax-speed="0.1"
+      ></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+          <div>
+            <h2
+              class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white"
+            >
+              Ready to start your cybersecurity career?
+            </h2>
+            <p class="mt-3 max-w-3xl text-base sm:text-lg text-indigo-100">
+              Join thousands of aspiring professionals who trust 0day for their
+              cybersecurity education.
+            </p>
+          </div>
+          <div
+            class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 lg:mt-0 lg:flex-shrink-0 lg:justify-end"
+          >
+            <div class="inline-flex rounded-md shadow">
+              <a
+                href="#"
+                class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
+              >
+                Get started free
+              </a>
+            </div>
+            <div class="inline-flex rounded-md shadow">
+              <a
+                href="#"
+                class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 bg-opacity-60 hover:bg-opacity-70"
+              >
+                Contact sales
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-800 pt-8 sm:pt-12 pb-6 sm:pb-8"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div class="space-y-6 sm:space-y-8 xl:col-span-1">
+            <div class="flex items-center">
+              <i class="fas fa-certificate text-indigo-500 text-2xl mr-2"></i>
+              <span class="text-xl font-bold text-white">Certhora</span>
+            </div>
+            <p class="text-gray-300 text-sm sm:text-base">
+              The professional digital certificate platform for event organizers
+              and educators.
+            </p>
+            <div class="flex space-x-6">
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-twitter text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-facebook text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
+            </div>
+          </div>
+          <div
+            class="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 xl:mt-0 xl:col-span-2"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+              <div>
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Product
+                </h3>
+                <ul class="mt-4 space-y-3 sm:space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Features
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Pricing
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      API
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Integrations
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-8 sm:mt-0">
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Resources
+                </h3>
+                <ul class="mt-4 space-y-3 sm:space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Documentation
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Guides
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Webinars
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+              <div>
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Company
+                </h3>
+                <ul class="mt-4 space-y-3 sm:space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Careers
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Press
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Partners
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-8 sm:mt-0">
+                <h3
+                  class="text-sm font-semibold text-gray-300 tracking-wider uppercase"
+                >
+                  Legal
+                </h3>
+                <ul class="mt-4 space-y-3 sm:space-y-4">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Privacy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Terms
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      Cookie Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm sm:text-base text-gray-400 hover:text-white"
+                    >
+                      GDPR
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 sm:mt-12 border-t border-gray-700 pt-6 sm:pt-8">
+          <p class="text-sm sm:text-base text-gray-400 text-center">
+            &copy; 2023 0day. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/libs/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 1000,
+          once: true,
+        });
+        console.log("AOS initialized!");
+
+        // Parallax effect
+        const parallaxElements = document.querySelectorAll(
+          "[data-parallax-speed]"
+        );
+        window.addEventListener("scroll", function () {
+          parallaxElements.forEach((el) => {
+            const speed = parseFloat(el.dataset.parallaxSpeed);
+            const yPos = window.pageYOffset * speed;
+            el.style.transform = `translateY(${yPos}px)`;
+          });
+        });
+        console.log("Parallax script running!");
+      });
+
+      // Pricing toggle
+      document
+        .getElementById("monthly-toggle")
+        .addEventListener("click", function () {
+          document
+            .getElementById("monthly-toggle")
+            .classList.add("gradient-bg", "text-white");
+          document
+            .getElementById("monthly-toggle")
+            .classList.remove("text-gray-700", "bg-white");
+          document
+            .getElementById("annual-toggle")
+            .classList.remove("gradient-bg", "text-white");
+          document
+            .getElementById("annual-toggle")
+            .classList.add("text-gray-700", "bg-white");
+        });
+
+      document
+        .getElementById("annual-toggle")
+        .addEventListener("click", function () {
+          document
+            .getElementById("annual-toggle")
+            .classList.add("gradient-bg", "text-white");
+          document
+            .getElementById("annual-toggle")
+            .classList.remove("text-gray-700", "bg-white");
+          document
+            .getElementById("monthly-toggle")
+            .classList.remove("gradient-bg", "text-white");
+          document
+            .getElementById("monthly-toggle")
+            .classList.add("text-gray-700", "bg-white");
+        });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById("mobile-menu");
+            if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+            }
+          }
+        });
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !mobileMenuButton.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+          ) {
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

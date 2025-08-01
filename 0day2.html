@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0day | Cybersecurity Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #ffffff;
+            --accent: #2F3B65;
+            --gradient-1: #7C22BF;
+            --gradient-2: #E5222D;
+            --gradient-3: #1150C4;
+            --bg-dark: #0A0F1F;
+            --bg-light: #F5F8FF;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0AEC0;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .light-theme {
+            --text-primary: #0A0F1F;
+            --text-secondary: #4A5568;
+            --card-bg: rgba(245, 248, 255, 0.8);
+            --bg-dark: #F5F8FF;
+            --bg-light: #0A0F1F;
+            --glass-bg: rgba(245, 248, 255, 0.7);
+            --glass-border: rgba(10, 15, 31, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 10% 20%, var(--gradient-1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, var(--gradient-2) 0%, transparent 25%),
+                radial-gradient(circle at 30% 70%, var(--gradient-3) 0%, transparent 15%);
+            z-index: -2;
+            opacity: 0.15;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-3));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--gradient-2);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--text-primary), #a0aec0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .terminal-mockup {
+            background: rgba(10, 15, 31, 0.7);
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .terminal-header {
+            padding: 0.8rem 1.2rem;
+            background: rgba(20, 25, 45, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: monospace;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .terminal-prompt {
+            color: #27c93f;
+            margin-right: 0.8rem;
+        }
+
+        .terminal-command {
+            color: var(--text-primary);
+            animation: typing 3s steps(40, end);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            margin-left: 2.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 10px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 98%;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-3));
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 20%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: progress-shine 2s infinite;
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .course-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .course-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .difficulty {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .diff-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+        }
+
+        .diff-dot.active {
+            background: var(--gradient-2);
+        }
+
+        .course-link {
+            color: var(--gradient-3);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .course-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* Labs Section */
+        .labs-container {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+        }
+
+        .labs-content {
+            flex: 1;
+        }
+
+        .labs-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .labs-terminal {
+            background: rgba(10, 15, 31, 0.7);
+            border-radius: 10px;
+            padding: 2rem;
+            font-family: monospace;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            min-height: 350px;
+        }
+
+        .terminal-command-line {
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .terminal-command-line.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon i {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .feature-text h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Certifications Section */
+        .certs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) rotateY(10deg);
+        }
+
+        .cert-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transform: translateZ(30px);
+        }
+
+        .cert-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .cert-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            transform: translateZ(20px);
+        }
+
+        .cert-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transform: translateZ(10px);
+        }
+
+        /* Teams Section */
+        .teams-container {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+        }
+
+        .teams-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .teams-dashboard {
+            background: rgba(10, 15, 31, 0.7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-title {
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(20, 25, 45, 0.6);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gradient-3);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .teams-content {
+            flex: 1;
+        }
+
+        /* Testimonials Section */
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
+            max-width: 700px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gradient-1);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .testimonial-text::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-role {
+            color: var(--text-secondary);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--gradient-3);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .faq-answer.open {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            border-radius: 20px;
+            padding: 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .newsletter {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 15, 31, 0.9);
+            padding: 5rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-about {
+            max-width: 300px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .footer-links h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gradient-3);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--gradient-3);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes progress-shine {
+            0% { left: -20% }
+            100% { left: 120% }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero, .labs-container, .teams-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin-bottom: 3rem;
+            }
+            
+            .hero-buttons, .features-grid {
+                justify-content: center;
+            }
+            
+            .terminal-mockup {
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .labs-image, .teams-image {
+                order: -1;
+                margin-bottom: 3rem;
+            }
+            
+            .section-header {
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .newsletter {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">0day</div>
+        <div class="nav-links">
+            <a href="#">Courses</a>
+            <a href="#">Labs</a>
+            <a href="#">Certifications</a>
+            <a href="#">For Teams</a>
+            <a href="#">Pricing</a>
+        </div>
+        <div class="nav-buttons">
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            <button class="btn btn-outline">Sign In</button>
+            <button class="btn btn-primary">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="tagline">FROM THREAT TO RESILIENCE</div>
+            <h1>Master Real-World Cybersecurity Skills</h1>
+            <p>0day delivers high-intensity cybersecurity training inspired by the industry's toughest certifications.</p>
+            <p>Advance your skills with hands-on labs, real-world scenarios, and expert mentorship. Trusted by red teamers, pentesters, and SOC analysts worldwide.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Start Learning Free</button>
+                <button class="btn btn-outline">Watch Demo</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="terminal-mockup">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">root@oday:-#</div>
+                        <div class="terminal-command">map -s6 -0 target.lab</div>
+                    </div>
+                    <div class="terminal-output">
+                        PORT STATE SERVICE<br>
+                        22/tcp open ssh<br>
+                        80/tcp open http<br>
+                        443/tcp open https
+                    </div>
+                    <div class="terminal-line">
+                        <div class="terminal-prompt">root@oday:-#</div>
+                        <div class="terminal-command">exploit/multi/handler</div>
+                    </div>
+                    <div class="terminal-output">
+                        [*] Started reverse TCP handler on 192.168.1.5:4444
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="terminal-output">
+                        47 Vulnerabilities<br>
+                        12 Critical<br>
+                        98% Coverage
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <div class="section-header">
+            <h2 class="section-title">Cutting-Edge Cybersecurity Courses</h2>
+            <p class="section-subtitle">Develop practical skills through our expert-led courses designed for all experience levels.</p>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="course-title">Red Teaming Operations</h3>
+                <p class="course-desc">Master offensive security tactics to identify and exploit vulnerabilities in enterprise environments.</p>
+                <div class="difficulty">
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot"></div>
+                    <div class="diff-dot"></div>
+                </div>
+                <a href="#" class="course-link">Explore Course <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-card">
+                <div class="course-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="course-title">Web Application Exploitation</h3>
+                <p class="course-desc">Learn to discover and exploit vulnerabilities in modern web applications and APIs.</p>
+                <div class="difficulty">
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot"></div>
+                    <div class="diff-dot"></div>
+                    <div class="diff-dot"></div>
+                </div>
+                <a href="#" class="course-link">Explore Course <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-card">
+                <div class="course-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3 class="course-title">Reverse Engineering</h3>
+                <p class="course-desc">Dive deep into malware analysis and binary exploitation techniques used by security researchers.</p>
+                <div class="difficulty">
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot active"></div>
+                    <div class="diff-dot"></div>
+                </div>
+                <a href="#" class="course-link">Explore Course <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs Section -->
+    <section id="labs" style="background: rgba(10, 15, 31, 0.7);">
+        <div class="section-header">
+            <h2 class="section-title">Interactive Cyber Ranges</h2>
+            <p class="section-subtitle">Practice in realistic environments that simulate enterprise networks and applications.</p>
+        </div>
+        <div class="labs-container">
+            <div class="labs-image">
+                <div class="labs-terminal">
+                    <div class="terminal-command-line">root@oday:~# nmap -sV -O target.lab</div>
+                    <div class="terminal-command-line">Starting Nmap 7.92 ( https://nmap.org )</div>
+                    <div class="terminal-command-line">Nmap scan report for target.lab (192.168.1.20)</div>
+                    <div class="terminal-command-line">PORT   STATE SERVICE VERSION</div>
+                    <div class="terminal-command-line">22/tcp open  ssh     OpenSSH 8.2p1</div>
+                    <div class="terminal-command-line">80/tcp open  http    Apache httpd 2.4.41</div>
+                    <div class="terminal-command-line">443/tcp open  ssl/http Apache httpd 2.4.41</div>
+                    <div class="terminal-command-line">MAC Address: 00:1A:2B:3C:4D:5E (Cisco Systems)</div>
+                </div>
+            </div>
+            <div class="labs-content">
+                <h2>Hands-On Labs for Real-World Experience</h2>
+                <p>Our virtual cyber ranges provide safe environments to practice penetration testing, incident response, and defensive techniques on realistic enterprise networks.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Instant Environment Reset</h3>
+                            <p>Reset compromised systems with a single click to practice repeatedly.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Complex Network Topologies</h3>
+                            <p>Practice on multi-tier enterprise networks with firewalls and segmentation.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Real-Time Progress Tracking</h3>
+                            <p>Monitor your performance with detailed metrics and skill assessments.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Collaborative Exercises</h3>
+                            <p>Work with teammates on complex red team/blue team scenarios.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 2rem;">Explore All Labs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="section-header">
+            <h2 class="section-title">Industry-Recognized Certifications</h2>
+            <p class="section-subtitle">Validate your skills with certifications designed by cybersecurity experts and recognized by employers.</p>
+        </div>
+        <div class="certs-container">
+            <div class="cert-card">
+                <div class="cert-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3 class="cert-title">Offensive Security Expert (OSX)</h3>
+                <p class="cert-desc">Prove your mastery in penetration testing and ethical hacking techniques.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="cert-title">Defensive Security Analyst (DSA)</h3>
+                <p class="cert-desc">Demonstrate expertise in threat detection, incident response, and security operations.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 class="cert-title">Cloud Security Specialist (CSS)</h3>
+                <p class="cert-desc">Validate your skills in securing AWS, Azure, and GCP cloud environments.</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <h3 class="cert-title">Web Application Security Professional (WASP)</h3>
+                <p class="cert-desc">Showcase your ability to identify and remediate web application vulnerabilities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams Section -->
+    <section id="teams" style="background: rgba(10, 15, 31, 0.7);">
+        <div class="section-header">
+            <h2 class="section-title">Enterprise Security Training</h2>
+            <p class="section-subtitle">Equip your security team with the skills needed to defend against modern threats.</p>
+        </div>
+        <div class="teams-container">
+            <div class="teams-content">
+                <h2>Cybersecurity Training for Teams</h2>
+                <p>0day for Teams provides enterprise-grade security training with centralized management, progress tracking, and custom learning paths.</p>
+                
+                <div class="features-grid" style="margin-top: 2rem;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Team Dashboards</h3>
+                            <p>Monitor team progress and skill development with comprehensive analytics.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Custom Learning Paths</h3>
+                            <p>Create tailored training programs for different roles in your organization.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Skill Gap Analysis</h3>
+                            <p>Identify weaknesses in your team's capabilities and address them effectively.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Scheduled Exercises</h3>
+                            <p>Plan and execute team-based security exercises and capture-the-flag events.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 2rem;">Request Team Demo</button>
+            </div>
+            <div class="teams-image">
+                <div class="teams-dashboard">
+                    <div class="dashboard-header">
+                        <div class="dashboard-title">Team Performance Dashboard</div>
+                        <div class="dashboard-actions">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">87%</div>
+                            <div class="stat-label">Completion Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">Labs Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Skills Improved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Engagement Score</div>
+                        </div>
+                    </div>
+                    <canvas id="teamChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Trusted by Security Professionals</h2>
+            <p class="section-subtitle">Join thousands of cybersecurity experts who have transformed their careers with 0day training.</p>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "0day's labs are the most realistic training environment I've experienced. The skills I gained directly translated to my role as a penetration tester."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-name">Sarah Johnson</div>
+                    <div class="author-role">Senior Penetration Tester, CyberSec Inc.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about our training platform and courses.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do I need prior cybersecurity experience? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No, 0day offers learning paths for all levels. Our beginner courses start with cybersecurity fundamentals and gradually progress to advanced topics. We recommend starting with our "Security Foundations" path if you're new to the field.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How does the lab environment work? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Our labs run in cloud-based virtual environments that you access through your browser. Each lab provides a realistic network or application scenario where you can practice techniques without needing your own infrastructure. Labs include guided exercises and challenges.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Are certifications included with courses? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Our certification exams are separate from course materials. However, our courses are specifically designed to prepare you for our certification exams. Each certification path includes practice exams and exam preparation materials.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What kind of support do you offer? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We provide 24/7 lab access support, dedicated mentor assistance for premium plans, active community forums, and regular office hours with security experts. Enterprise plans include dedicated account managers and custom support options.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section>
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Start Your Cybersecurity Journey Today</h2>
+                <p class="cta-subtitle">Join thousands of security professionals mastering real-world skills with our hands-on training platform.</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Enter your email address">
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">0day</div>
+                <p class="footer-about">Providing industry-leading cybersecurity training through hands-on labs and expert-led courses since 2018.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Courses</h3>
+                <ul>
+                    <li><a href="#">Red Teaming</a></li>
+                    <li><a href="#">Web Exploitation</a></li>
+                    <li><a href="#">Reverse Engineering</a></li>
+                    <li><a href="#">Cloud Security</a></li>
+                    <li><a href="#">Forensics</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="#">Labs</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="#">For Teams</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Partners</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Built by 0day © 2025. All rights reserved. | <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            if (document.body.classList.contains('light-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+        
+        // Sticky Navbar
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.course-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Terminal Typing Effect
+        const terminalLines = document.querySelectorAll('.terminal-command-line');
+        let delay = 0;
+        
+        terminalLines.forEach((line, index) => {
+            setTimeout(() => {
+                line.style.opacity = 1;
+                line.style.transform = 'translateY(0)';
+            }, delay);
+            delay += 300;
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('open');
+                
+                const icon = question.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+        
+        // Team Chart
+        const ctx = document.getElementById('teamChart').getContext('2d');
+        const teamChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [65, 72, 78, 81, 85, 90],
+                    borderColor: '#7C22BF',
+                    backgroundColor: 'rgba(124, 34, 191, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
