@@ -24,7 +24,7 @@
         --accent-2: #1150c4;
         --text-primary: #2f3b65;
         --text-secondary: #5a6a9a;
-        --bg-light: #e9edf7;
+        --bg-light: #ebebeb;
         --bg-dark: #0a0e1d;
         --glass: rgba(255, 255, 255, 0.08);
         --glass-border: rgba(255, 255, 255, 0.2);
@@ -64,24 +64,30 @@
         border-radius: var(--radius);
         box-shadow: 0px 16px 35px rgba(0, 0, 0, 0.18),
           inset 6px 6px 12px rgba(255, 255, 255, 1),
-          inset -6px -6px 12px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.6);
+          inset -6px -6px 12px rgba(0, 0, 0, 0.2);
+        /* border: 1px solid rgba(255, 255, 255, 0.6); */
         backdrop-filter: blur(10px);
         transition: var(--transition);
       }
 
+              .dark-theme .clay {
+            box-shadow: 0px 16px 35px rgba(0, 0, 0, 0.3),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.1),
+                inset -6px -6px 12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
       .clay-hover:hover {
         transform: translateY(-12px);
         box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.22),
           inset 6px 6px 12px rgba(255, 255, 255, 1),
-          inset -6px -6px 12px rgba(0, 0, 0, 0.1);
+          inset -6px -6px 12px rgba(0, 0, 0, 0.2);
       }
 
       .navbar.clay {
         box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.2),
-          inset 10px 10px 20px rgba(255, 255, 255, 0.9),
+          inset 10px 10px 20px rgba(255, 255, 255, 1),
           inset -10px -10px 20px rgba(0, 0, 0, 0.18);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        /* border: 1px solid rgba(255, 255, 255, 0.4); */
       }
 
       .fas,
@@ -459,7 +465,7 @@
         box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.15),
           inset 4px 4px 8px rgba(255, 255, 255, 1),
           inset -4px -4px 8px rgba(0, 0, 0, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        /* border: 1px solid rgba(255, 255, 255, 0.5); */
         transition: var(--transition);
       }
 
@@ -644,6 +650,12 @@
         background: linear-gradient(135deg, var(--secondary), var(--accent-2));
         color: white;
       }
+            .cert-front.clay {
+        box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.2),
+          inset 6px 6px 12px rgba(255, 255, 255, 0.5),
+          inset -6px -6px 12px rgba(0, 0, 0, 0.5);
+        /* border: 1px solid rgba(255, 255, 255, 0.4); */
+      }
 
       .cert-back {
         background: var(--primary);
@@ -721,7 +733,7 @@
         box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.15),
           inset 4px 4px 8px rgba(255, 255, 255, 1),
           inset -4px -4px 8px rgba(0, 0, 0, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        /* border: 1px solid rgba(255, 255, 255, 0.5); */
         transition: var(--transition);
       }
 
@@ -760,7 +772,7 @@
         box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.15),
           inset 4px 4px 8px rgba(255, 255, 255, 1),
           inset -4px -4px 8px rgba(0, 0, 0, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        /* border: 1px solid rgba(255, 255, 255, 0.5); */
         transition: var(--transition);
       }
 
@@ -1247,7 +1259,7 @@
     </section>
 
     <!-- Interactive Labs -->
-    <section id="labs" style="background: var(--primary)">
+    <section id="labs" style="background: var(--bg-light)">
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">Interactive Security Labs</h2>
         <p class="section-subtitle">
