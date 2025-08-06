@@ -23,10 +23,6 @@
             box-sizing: border-box;
         }
 
-        body, html {
-            overflow-x: hidden;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text);
@@ -47,13 +43,6 @@
             max-width: 1440px;
             margin: 0 auto;
             padding: 0 50px;
-        }
-
-        .hero .container {
-            max-width: 700px;
-            padding: 0;
-            position: relative;
-            z-index: 2;
         }
 
         .section {
@@ -220,10 +209,9 @@
         .hero {
             height: 100vh;
             min-height: 800px;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
         }
@@ -231,7 +219,7 @@
         .hero-content {
             max-width: 700px;
             color: white;
-            text-align: center;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -246,54 +234,7 @@
             margin-bottom: 40px;
             font-weight: 300;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-            opacity: 0.9;
         }
-
-        .hero-illustrations {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .illustration {
-            position: absolute;
-            opacity: 0;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes ill-1-anim { from { transform: translateX(-200%) rotate(-20deg) scale(0.8); opacity: 0; } to { transform: rotate(-20deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-2-anim { from { transform: translateY(200%) rotate(-10deg) scale(0.8); opacity: 0; } to { transform: rotate(-10deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-3-anim { from { transform: translateX(-200%) rotate(-25deg) scale(0.8); opacity: 0; } to { transform: rotate(-25deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-4-anim { from { transform: translateX(200%) rotate(20deg) scale(0.8); opacity: 0; } to { transform: rotate(20deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-5-anim { from { transform: translateY(200%) rotate(20deg) scale(0.8); opacity: 0; } to { transform: rotate(20deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-6-anim { from { transform: translateX(200%) rotate(25deg) scale(0.8); opacity: 0; } to { transform: rotate(25deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-7-anim { from { transform: translateY(200%) rotate(15deg) scale(0.8); opacity: 0; } to { transform: rotate(15deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-8-anim { from { transform: translateX(200%) rotate(-15deg) scale(0.8); opacity: 0; } to { transform: rotate(-15deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-9-anim { from { transform: translateY(200%) rotate(-25deg) scale(0.8); opacity: 0; } to { transform: rotate(-25deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-10-anim { from { transform: translateY(200%) translateX(-50%) rotate(45deg) scale(0.8); opacity: 0; } to { transform: translateX(-50%) rotate(45deg) scale(0.8); opacity: 0.15; } }
-        @keyframes ill-11-anim { from { transform: translateY(200%) translateX(-50%) rotate(20deg) scale(0.8); opacity: 0; } to { transform: translateX(-50%) rotate(20deg) scale(0.8); opacity: 0.15; } }
-
-        .ill-1 { top: 15%; left: 10%; width: 10vw; max-width: 150px; animation-name: ill-1-anim; animation-delay: 0.2s; }
-        .ill-2 { top: 50%; left: 10%; width: 14vw; max-width: 200px; animation-name: ill-2-anim; animation-delay: 0.3s; }
-        .ill-3 { top: 45%; left: 20%; width: 12vw; max-width: 180px; animation-name: ill-3-anim; animation-delay: 0.4s; }
-        .ill-4 { top: 15%; right: 10%; width: 10vw; max-width: 150px; animation-name: ill-4-anim; animation-delay: 0.2s; }
-        .ill-5 { top: 55%; right: 5%; width: 17vw; max-width: 250px; animation-name: ill-5-anim; animation-delay: 0.5s; }
-        .ill-6 { top: 70%; right: 15%; width: 17vw; max-width: 250px; animation-name: ill-6-anim; animation-delay: 0.6s; }
-        .ill-7 { top: 70%; left: 30%; width: 17vw; max-width: 250px; animation-name: ill-7-anim; animation-delay: 0.7s; }
-        .ill-8 { top: 30%; right: 20%; width: 11vw; max-width: 160px; animation-name: ill-8-anim; animation-delay: 0.3s; }
-        .ill-9 { top: 80%; right: 30%; width: 14vw; max-width: 200px; animation-name: ill-9-anim; animation-delay: 0.8s; }
-        .ill-10 { top: 35%; left: 10%; width: 10vw; max-width: 150px; animation-name: ill-10-anim; animation-delay: 0.4s; }
-        .ill-11 { top: 60%; right: 20%; width: 14vw; max-width: 200px; animation-name: ill-11-anim; animation-delay: 0.5s; }
 
         .scroll-down {
             position: absolute;
@@ -348,6 +289,7 @@
             margin-bottom: 25px;
         }
 
+        /* Lab Section */
         .lab-section {
             background: linear-gradient(to right, var(--secondary) 60%, transparent 60%);
             position: relative;
@@ -797,22 +739,6 @@
                 width: 100%;
                 min-height: 400px;
             }
-
-            .illustration {
-                /* Opacity is handled by the animation keyframes */
-            }
-
-            .ill-1 { top: 12%; left: 8%; }
-            .ill-2 { top: 52%; left: 8%; }
-            .ill-3 { top: 42%; left: 18%; }
-            .ill-4 { top: 12%; right: 8%; }
-            .ill-5 { top: 58%; right: 3%; }
-            .ill-6 { top: 72%; right: 12%; }
-            .ill-7 { top: 72%; left: 28%; }
-            .ill-8 { top: 28%; right: 18%; }
-            .ill-9 { top: 82%; right: 28%; }
-            .ill-10 { top: 32%; left: 8%; }
-            .ill-11 { top: 62%; right: 18%; }
         }
 
         @media (max-width: 768px) {
@@ -848,35 +774,6 @@
                 width: 100%;
                 border-radius: 8px;
             }
-
-            .illustration {
-                width: 35vw;
-                /* Opacity is handled by the animation keyframes */
-            }
-
-            .ill-2, .ill-3, .ill-5, .ill-7, .ill-9, .ill-11 {
-                display: none;
-            }
-
-            .ill-1 { top:10%; left: 5%; transform: scale(1.2) rotate(30deg);}
-            .ill-4 { top: 50%; right: 10%; }
-            .ill-6 { top: 70%; left: 10%; transform: scale(1.5) rotate(-20deg);}
-            .ill-8 { top: 15%; right: 30%; transform: scale(0.8) rotate(10deg); }
-            .ill-10 { top: 15%; left: 65%; transform: scale(1.2) rotate(-30deg); }
-        }
-
-        @media (max-width: 768px) {
-            @keyframes ill-1-anim-mobile { from { transform: translateX(-200%) scale(1.2) rotate(30deg); opacity: 0; } to { transform: scale(1.2) rotate(30deg); opacity: 0.1; } }
-            @keyframes ill-4-anim-mobile { from { transform: translateY(200%) scale(1) rotate(0); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 0.1; } }
-            @keyframes ill-6-anim-mobile { from { transform: translateX(-200%) scale(1.5) rotate(-20deg); opacity: 0; } to { transform: scale(1.5) rotate(-20deg); opacity: 0.1; } }
-            @keyframes ill-8-anim-mobile { from { transform: translateY(-200%) scale(0.8) rotate(10deg); opacity: 0; } to { transform: scale(0.8) rotate(10deg); opacity: 0.1; } }
-            @keyframes ill-10-anim-mobile { from { transform: translateX(200%) scale(1.2) rotate(-30deg); opacity: 0; } to { transform: scale(1.2) rotate(-30deg); opacity: 0.1; } }
-
-            .ill-1 { animation-name: ill-1-anim-mobile; }
-            .ill-4 { animation-name: ill-4-anim-mobile; }
-            .ill-6 { animation-name: ill-6-anim-mobile; }
-            .ill-8 { animation-name: ill-8-anim-mobile; }
-            .ill-10 { animation-name: ill-10-anim-mobile; }
         }
     </style>
 </head>
@@ -896,31 +793,16 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-illustrations">
-            <img src="atftassets/set1hero/sewingsets.svg" alt="Fashion Illustration" class="illustration ill-1">
-            <img src="atftassets/set1hero/dress1.svg" alt="Fashion Illustration" class="illustration ill-2">
-            <img src="atftassets/set1hero/shirt1.svg" alt="Fashion Illustration" class="illustration ill-3">
-            <img src="atftassets/set1hero/manequinbody.svg" alt="Fashion Illustration" class="illustration ill-4">
-            <img src="atftassets/set1hero/boobinpin.svg" alt="Fashion Illustration" class="illustration ill-5">
-            <img src="atftassets/set1hero/manequinebody2.svg" alt="Fashion Illustration" class="illustration ill-6">
-            <img src="atftassets/set1hero/coat.svg" alt="Fashion Illustration" class="illustration ill-7">
-            <img src="atftassets/set1hero/handbag.svg" alt="Fashion Illustration" class="illustration ill-8">
-            <img src="atftassets/set1hero/head.svg" alt="Fashion Illustration" class="illustration ill-9">
-            <img src="atftassets/set1hero/scissors.svg" alt="Fashion Illustration" class="illustration ill-10">
-            <img src="atftassets/set1hero/handbag2.svg" alt="Fashion Illustration" class="illustration ill-11">
-
-        </div>
-
         <div class="container">
             <div class="hero-content fade-in">
                 <h1>Design Your Future in Style</h1>
                 <p>Premium fashion education for visionary designers and entrepreneurs. Where technology meets haute couture.</p>
                 <a href="#courses" class="btn">Explore Courses</a>
             </div>
-        </div>
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
-            <span>Scroll to Discover</span>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+                <span>Scroll to Discover</span>
+            </div>
         </div>
     </section>
 
