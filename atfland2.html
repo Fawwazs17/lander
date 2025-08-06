@@ -772,6 +772,10 @@
 
         /* Responsive */
         @media (max-width: 1100px) {
+            .hero .container {
+                padding: 0 30px;
+            }
+
             .container {
                 padding: 0 30px;
             }
@@ -851,7 +855,6 @@
 
             .illustration {
                 width: 35vw;
-                /* Opacity is handled by the animation keyframes */
             }
 
             .ill-2, .ill-3, .ill-5, .ill-7, .ill-9, .ill-11 {
@@ -866,11 +869,11 @@
         }
 
         @media (max-width: 768px) {
-            @keyframes ill-1-anim-mobile { from { transform: translateX(-200%) scale(1.2) rotate(30deg); opacity: 0; } to { transform: scale(1.2) rotate(30deg); opacity: 0.1; } }
-            @keyframes ill-4-anim-mobile { from { transform: translateY(200%) scale(1) rotate(0); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 0.1; } }
+            @keyframes ill-1-anim-mobile { from { transform: translateX(-200%) scale(1.2) rotate(-90deg); opacity: 0; } to { transform: scale(1.2) rotate(30deg); opacity: 0.1; } }
+            @keyframes ill-4-anim-mobile { from { transform: translateY(200%) scale(1) rotate(90deg); opacity: 0; } to { transform: scale(1) rotate(20deg); opacity: 0.1; } }
             @keyframes ill-6-anim-mobile { from { transform: translateX(-200%) scale(1.5) rotate(-20deg); opacity: 0; } to { transform: scale(1.5) rotate(-20deg); opacity: 0.1; } }
             @keyframes ill-8-anim-mobile { from { transform: translateY(-200%) scale(0.8) rotate(10deg); opacity: 0; } to { transform: scale(0.8) rotate(10deg); opacity: 0.1; } }
-            @keyframes ill-10-anim-mobile { from { transform: translateX(200%) scale(1.2) rotate(-30deg); opacity: 0; } to { transform: scale(1.2) rotate(-30deg); opacity: 0.1; } }
+            @keyframes ill-10-anim-mobile { from { transform: translateX(200%) scale(1.2) rotate(90deg); opacity: 0; } to { transform: scale(1.2) rotate(-30deg); opacity: 0.1; } }
 
             .ill-1 { animation-name: ill-1-anim-mobile; }
             .ill-4 { animation-name: ill-4-anim-mobile; }
